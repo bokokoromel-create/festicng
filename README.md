@@ -1,111 +1,169 @@
-# FUNKIPHINO — Event Ticketing Platform
+# 🎶 Festicng — Plateforme de Billetterie Evenementielle
 
-A modern, responsive event ticketing web application built with **Next.js 16**, **React 19**, **TypeScript**, and **Tailwind CSS v4**.
+> Decouvrez, recherchez et reservez vos places pour les meilleurs concerts et festivals — le tout dans une interface moderne et intuitive.
 
-## Tech Stack
+---
 
-| Layer       | Technology                        |
-| ----------- | --------------------------------- |
-| Framework   | Next.js 16 (App Router)           |
-| UI Library  | React 19                          |
-| Styling     | Tailwind CSS v4, CSS Variables    |
-| Language    | TypeScript 5                      |
-| Fonts       | Inter, Dancing Script (Google)    |
-| Images      | Next.js Image (local + remote)    |
+## 📋 Apercu
 
-## Project Structure
+**Festicng** est une application web de billetterie evenementielle pensee pour offrir une experience fluide aux amateurs de musique et d'evenements live. Le projet simule un flux complet : de la decouverte d'evenements jusqu'a l'achat de tickets, en passant par l'authentification et le formulaire de contact.
+
+| | |
+|---|---|
+| **Probleme resolu** | Les plateformes de billetterie existantes sont souvent lentes, surchargees et peu adaptees au mobile. Festicng propose une alternative rapide, epuree et responsive. |
+| **Public cible** | Organisateurs d'evenements, spectateurs, recruteurs techniques souhaitant evaluer un projet frontend moderne. |
+| **Statut** | MVP fonctionnel — interface complete, interactions operationnelles. |
+
+---
+
+## ✨ Fonctionnalites
+
+| Fonctionnalite | Description |
+|---|---|
+| 🎠 **Carrousel Hero** | Defilement automatique d'images (5s) avec navigation par fleches |
+| 🔍 **Recherche en temps reel** | Filtrage instantane par nom, lieu ou date |
+| 🏷️ **Filtres par categorie** | Chips interactifs : Concert, Festival, Soiree, Culture, Sport, Business |
+| 🎟️ **Achat de tickets** | Modal avec selecteur de quantite, calcul du total, confirmation animee |
+| ❤️ **Systeme de likes** | Toggle coeur sur chaque carte avec compteur dynamique |
+| 🖼️ **Galerie photo** | Grille avec effet zoom + lightbox plein ecran navigable |
+| 📝 **Formulaire de contact** | Validation cote client avec retour visuel de succes |
+| 🔐 **Authentification** | Connexion / Inscription avec OAuth Google et Apple |
+| 📱 **100% Responsive** | Menu hamburger, layout adaptatif, touch-friendly |
+| 🎨 **Design System** | Tokens CSS centralises pour un theming coherent |
+
+---
+
+## 🛠️ Technologies
+
+| Couche | Technologie | Version |
+|---|---|---|
+| Framework | Next.js (App Router) | 16.1 |
+| UI | React | 19.2 |
+| Langage | TypeScript | 5.x |
+| Styling | Tailwind CSS + CSS Variables | 4.x |
+| Polices | Inter, Dancing Script | Google Fonts |
+| Linting | ESLint + eslint-config-next | 9.x |
+| Images | Next.js Image (local + distant) | — |
+
+**Zero dependance UI externe** — tous les composants et icones sont faits main.
+
+---
+
+## 📁 Architecture du Projet
 
 ```
 festicng-web/
 ├── app/
-│   ├── globals.css          # Design tokens (CSS variables), animations
-│   ├── layout.tsx           # Root layout, metadata, font imports
-│   └── page.tsx             # Page orchestrator — composes all sections
+│   ├── globals.css             # Design tokens, animations, utilitaires
+│   ├── layout.tsx              # Layout racine, meta, polices
+│   └── page.tsx                # Orchestrateur (compose les sections)
+│
 ├── components/
-│   ├── icons.tsx            # Reusable SVG icon components
-│   ├── Header.tsx           # Sticky nav, mobile menu, auth dropdown
-│   ├── HeroCarousel.tsx     # Auto-sliding hero with prev/next controls
-│   ├── EventsSection.tsx    # Search bar, category filters, event grid
-│   ├── EventCard.tsx        # Individual event card with like & buy
-│   ├── AboutSection.tsx     # Band info, stats, rating badge
-│   ├── PerformanceBanner.tsx# Full-bleed parallax image section
-│   ├── GallerySection.tsx   # Photo grid with lightbox trigger
-│   ├── Lightbox.tsx         # Full-screen image viewer with nav
-│   ├── Footer.tsx           # Contact form, upcoming events, credits
-│   ├── TicketModal.tsx      # Ticket purchase flow with qty selector
-│   └── AuthModal.tsx        # Login/register with Google & Apple OAuth
+│   ├── icons.tsx               # 20+ composants SVG reutilisables
+│   ├── Header.tsx              # Navigation sticky, menu mobile, auth
+│   ├── HeroCarousel.tsx        # Carrousel auto-defilant
+│   ├── EventsSection.tsx       # Recherche, filtres, grille d'evenements
+│   ├── EventCard.tsx           # Carte evenement (like, achat)
+│   ├── AboutSection.tsx        # Presentation, statistiques, rating
+│   ├── PerformanceBanner.tsx   # Banniere immersive plein ecran
+│   ├── GallerySection.tsx      # Grille photo avec lightbox
+│   ├── Lightbox.tsx            # Viewer plein ecran avec navigation
+│   ├── Footer.tsx              # Formulaire contact, evenements, credits
+│   ├── TicketModal.tsx         # Flux d'achat complet
+│   └── AuthModal.tsx           # Login / Register + OAuth
+│
 ├── lib/
-│   └── constants.ts         # Types, data, images, config, helpers
-├── public/
-│   ├── nainoa-shizuru-*.jpg # Concert crowd photo
-│   └── anthony-delanoix-*.jpg # Heart hands concert photo
-├── next.config.ts           # Remote image patterns (Figma assets)
-├── tsconfig.json            # TypeScript config with @ path alias
+│   └── constants.ts            # Types, donnees, config, helpers
+│
+├── public/                     # Images statiques (concerts)
+├── next.config.ts              # Configuration Next.js
+├── tsconfig.json               # Config TypeScript avec alias @/
 └── package.json
 ```
 
-## Features
+---
 
-- **Hero Carousel** — Auto-sliding images (5s interval) with arrow navigation
-- **Event Discovery** — Search by name/location/date + category filter chips
-- **Ticket Purchase** — Modal with quantity selector, price calculation, confirmation
-- **Like System** — Toggle hearts on event cards with live counter
-- **Photo Gallery** — Grid with hover zoom + full-screen lightbox with prev/next
-- **Contact Form** — Validated form (name, email, message) with success feedback
-- **Authentication** — Login/register modals with Google & Apple social sign-in
-- **Mobile Responsive** — Hamburger menu, touch-friendly, adaptive layout
-- **Design System** — CSS custom properties for consistent theming
+## 🚀 Installation
 
-## Getting Started
+### Prerequis
 
-### Prerequisites
+- **Node.js** 18 ou superieur
+- **npm**, **yarn** ou **pnpm**
 
-- Node.js 18+
-- npm or yarn
-
-### Installation
+### Etapes
 
 ```bash
-git clone <repo-url>
+# 1. Cloner le depot
+git clone https://github.com/<votre-username>/festicng-web.git
 cd festicng-web
+
+# 2. Installer les dependances
 npm install
-```
 
-### Development
-
-```bash
+# 3. Lancer le serveur de developpement
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+L'application est accessible sur **http://localhost:3000**.
 
-### Production Build
+### Build de production
 
 ```bash
 npm run build
 npm start
 ```
 
-## Design Tokens
+---
 
-All design decisions are centralized in `app/globals.css` as CSS custom properties:
+## 💡 Utilisation
 
-- `--bg-*` — Background colors (primary, secondary, dark, card, glass, overlay)
-- `--accent` / `--accent-dark` — Brand indigo palette
-- `--cat-*` — Category badge colors (concert, festival, soiree, etc.)
-- `--text-*` — Typography colors (primary, secondary, muted, price)
-- `--border-*` — Border opacity levels
-- `--shadow-*` — Shadow depths (sm through xl, pill, card)
-- `--radius-*` — Border radii
+1. **Parcourir les evenements** — Scrollez ou utilisez la barre de recherche et les filtres
+2. **Aimer un evenement** — Cliquez sur le coeur pour ajouter aux favoris
+3. **Acheter un ticket** — Cliquez sur "Acheter tickets", choisissez la quantite, confirmez
+4. **Creer un compte** — Cliquez sur l'icone utilisateur dans le header
+5. **Contacter le groupe** — Remplissez le formulaire dans la section contact
+6. **Explorer la galerie** — Cliquez sur une photo pour l'ouvrir en plein ecran
 
-## Architecture Decisions
+---
 
-- **Component isolation** — Each section is a self-contained component managing its own local state (forms, filters, carousel timers)
-- **Page as orchestrator** — `page.tsx` only handles shared state (likes, modals) and passes callbacks down
-- **No external UI library** — All components use Tailwind + inline SVG icons for zero dependency overhead
-- **CSS Variables over Tailwind theme** — Enables runtime theming and keeps the design system framework-agnostic
-- **`"use client"` boundary** — Only interactive components are client-side; static sections remain server-renderable
+## 📚 Ce que j'ai appris
 
-## License
+- **Architecture modulaire React** — Decomposer un monolithe de 800 lignes en 14 composants isoles avec des responsabilites claires
+- **Design System avec CSS Variables** — Creer un systeme de tokens coherent (couleurs, ombres, rayons, typographie) reutilisable sans dependance a un framework
+- **Gestion d'etat sans librairie** — Utiliser `useState`, `useCallback` et `useRef` pour gerer des interactions complexes (carrousel, modals, formulaires, likes) sans Redux ni Zustand
+- **Next.js App Router** — Maitriser la frontiere `"use client"` et la composition de composants serveur/client
+- **Tailwind CSS v4** — Utiliser la nouvelle syntaxe `@import "tailwindcss"` et `@theme inline`
+- **UX et micro-interactions** — Animations CSS (float, slide-up), transitions de hover, retours visuels de confirmation
 
-Private project.
+---
+
+## 🔮 Ameliorations futures
+
+- [ ] **Backend API** — Integrer le backend NestJS (Ticketly API) avec Prisma + PostgreSQL
+- [ ] **Authentification reelle** — NextAuth.js avec providers Google et Apple
+- [ ] **Paiement** — Integration Stripe pour les transactions
+- [ ] **Base de donnees** — Persister les evenements, likes et reservations
+- [ ] **Pages dynamiques** — Route `/events/[id]` avec details complets
+- [ ] **Internationalisation** — Support francais / anglais avec next-intl
+- [ ] **Mode sombre** — Basculer les CSS variables pour un theme dark
+- [ ] **Tests** — Tests unitaires (Vitest) et E2E (Playwright)
+- [ ] **PWA** — Support hors-ligne et installation sur mobile
+
+---
+
+## 👤 Auteur / Contact
+
+**Votre Nom**
+
+| | |
+|---|---|
+| GitHub | [@votre-username](https://github.com/votre-username) |
+| LinkedIn | [votre-profil](https://linkedin.com/in/votre-profil) |
+| Email | votre@email.com |
+| Portfolio | [votre-site.com](https://votre-site.com) |
+
+---
+
+<p align="center">
+  Fait avec TypeScript, Next.js et beaucoup de funk 🎸
+</p>
